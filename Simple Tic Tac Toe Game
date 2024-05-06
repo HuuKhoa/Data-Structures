@@ -1,0 +1,129 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+
+class TicTacToe {
+public:
+    // Constructor
+    TicTacToe(){}
+
+    // Game Board
+    vector<vector<char>> gameBoard{
+            {'1','2','3'},
+            {'4','5','6'},
+            {'7','8','9'}
+    };
+
+    // Prints game board
+    void printGameBoard(){
+        for(int i = 0; i < gameBoard.size(); i++){
+            for(int j = 0; j < gameBoard[i].size(); j++){
+                cout << gameBoard[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    // Method to modify the game board
+    void modifyGameBoard(char player, int position){
+        // Changes the position inputed by the User to whoever's turn it is
+        for(int i = 0; i < gameBoard.size(); i++){
+            if(position < 4){
+                gameBoard[0][position - 1] = player;
+            }else if(position < 7){
+                gameBoard[1][position - 4] = player;
+            }else{
+                gameBoard[2][position - 7] = player;
+            }
+        }
+    }
+
+    // Method to check if anyone has won yet
+    bool checkWin(){
+        // Checks the rows to see if anyone has won yet
+        for(int i = 0; i < gameBoard.size(); i++){
+            if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][0] == gameBoard[i][2]){
+                // Checks if X or O is the winner
+                if(gameBoard[i][0] == 'X'){
+                    cout << "Player X is the Winner!" << endl;
+                }else{
+                    cout << "Player O is the Winner!" << endl;
+                }
+                return true;
+            }
+        }
+        // Checks the columns to see if anyone has won yet
+        for(int i = 0; i < gameBoard.size(); i++){
+            // Checks if X or O is the winner
+            if(gameBoard[0][i] == gameBoard[1][i] && gameBoard[0][i] == gameBoard[2][i]){
+                if(gameBoard[0][i] == 'X'){
+                    cout << "Player X is the Winner!" << endl;
+                }else{
+                    cout << "Player O is the Winner!" << endl;
+                }
+                return true;
+            }
+        }
+        // Checks diagonals to see if anyone has won yet
+        if(gameBoard[0][0] == gameBoard[1][1] && gameBoard[0][0] == gameBoard[2][2]){
+            // Checks if X or O is the winner
+            if(gameBoard[0][0] == 'X'){
+                cout << "Player X is the Winner!" << endl;
+            }else{
+                cout << "Player O is the Winner!" << endl;
+            }
+            return true;
+        }
+        if(gameBoard[0][3] == gameBoard[1][1] && gameBoard[0][3] == gameBoard[3][0]){
+            // Checks if X or O is the winner
+            if(gameBoard[0][0] == 'X'){
+                cout << "Player X is the Winner!" << endl;
+            }else{
+                cout << "Player O is the Winner!" << endl;
+            }
+            return true;
+        }
+        return false;
+    }
+
+};
+
+int main(){
+    // Initalize values
+    TicTacToe game;
+    int turns = 0;
+    int position;
+    char player = 'O';
+
+    // Runs the game while the number of turns is less than 9
+    while(turns < 9){
+        // Prints the game board and prompt for the User
+        game.printGameBoard();
+        cout << "Please type in the position you want to go:" << endl;
+
+        // Takes in input from the user
+        cin >> position;
+
+        // Checks to see whose turn it is then moditfies the game board accordingly
+        if(turns % 2 == 0){
+            player = 'O';
+        }else{
+            player = 'X';
+        }
+        game.modifyGameBoard(player, position);
+
+        // Checks for a winner after every turn
+        if(game.checkWin() == true){
+            game.printGameBoard();
+            turns = turns + 100;
+        }
+        turns++;
+    }
+    // If 9 turns go by without a winner declare the game as a Tie
+    if(turns < 90){
+        cout << "There was no winner, the game was a Tie!";
+    }
+    return 0;
+}

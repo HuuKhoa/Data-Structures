@@ -359,20 +359,20 @@ int main() {
         newBST->insertElement(newData);
     }
     newBST->print();
-    //newBST->findSmallest();
-    //newBST->findBiggest();
-    //newData = new Data(10);
-    //newBST->deleteElement(newData); // delete root
-    //newBST->print();
-    //newData = new Data(45);
-    //newBST->deleteElement(newData); //delete with two children
-    //newBST->print();
-    //newData = new Data(12);
-    //newBST->deleteElement(newData); //delete with one child
-    //newBST->print();
-    //newData = new Data(10);
-    //newBST->deleteElement(newData); // delete a number that doesnt exist. What will you print?
-    //newBST->print();
+    newBST->findSmallest();
+    newBST->findBiggest();
+    newData = new Data(10);
+    newBST->deleteElement(newData); // delete root
+    newBST->print();
+    newData = new Data(45);
+    newBST->deleteElement(newData); //delete with two children
+    newBST->print();
+    newData = new Data(12);
+    newBST->deleteElement(newData); //delete with one child
+    newBST->print();
+    newData = new Data(10);
+    newBST->deleteElement(newData); // delete a number that doesnt exist. What will you print?
+    newBST->print();
     newBST->findKthElement(1); //first element
     newBST->findKthElement(2); //last element
     newBST->findKthElement(3); // some element in between
